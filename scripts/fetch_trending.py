@@ -45,7 +45,7 @@ def main():
     load_dotenv()
     api_key = os.getenv('YT_API_KEY')
     if not api_key:
-        raise RuntimeError("Missing API_KEY in environment (.evn)")
+        raise RuntimeError("Missing API_KEY in environment (.env)")
     parser = argparse.ArgumentParser(description="Fetch trending Youtube music videos to raw zone.")
     parser.add_argument("--region", default="US", help="ISO-2 region code (default: US)")
     args = parser.parse_args()
