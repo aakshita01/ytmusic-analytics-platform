@@ -69,3 +69,46 @@
 | comment_rate      | double  | true     |
 | like_dislike_ratio| double  | true     |
 
+---
+
+### Day 4: Gold Layer Analytics (BI-Ready Datasets)
+- Created spark/batch/silver_to_gold_analytics.py to aggregate Silver data into Gold (BI-ready) datasets.
+- Designed analytical datasets for BI dashboards & reporting use cases.
+- Stored outputs in data/gold/{dataset_name}/.
+- Generated datasets:
+    1) Daily Summary → Key metrics aggregated by process_date.
+    2) Weekly Summary → Engagement trends grouped by week(process_date).
+    3) Top Channels Weekly → Most popular channels ranked by total views, likes, and comments.
+
+- Example Gold schemas:
+
+1) Daily Summary
+
+| Column            | Type    | Description                       |
+|-------------------|---------|-----------------------------------|
+| process_date      | string  | Snapshot date                     |
+| total_videos      | long    | Number of videos ingested         |
+| total_views	    | long    |	Sum of views across all videos    |
+| total_likes	    | long	  | Sum of likes across all videos    |
+| total_comments	| long	  | Sum of comments across all videos |
+
+2) Weekly Summary
+
+| Column            | Type | Description
+|-------------------|------|------------------------------|
+| week_start        | date | Start of the week            |
+| total_videos      | long | Number of videos in the week |
+| total_views       | long | Total views in the week      |
+| total_likes       | long | Total likes in the week      |
+| total_comments    | long | Total comments in the week   |
+
+3) Top Channels Weekly
+
+| Column            | Type   | Description                       |
+|-------------------|--------|-----------------------------------|
+| week_start        | date   | Start of the week                 |
+| channel_title     | string | Channel name                      |
+| total_views       | long   | Total views for the channel       |
+| total_likes       | long   | Total likes for the channel       | 
+| total_comments    | long   | Total comments for the channel    |
+| rank              | int    | Channel rank based on total views |
