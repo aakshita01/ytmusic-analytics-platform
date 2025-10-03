@@ -112,3 +112,10 @@
 | total_likes       | long   | Total likes for the channel       | 
 | total_comments    | long   | Total comments for the channel    |
 | rank              | int    | Channel rank based on total views |
+
+---
+
+### Day 5: Snowflake Integration (Silver + Gold)
+- Extended the pipeline to push both Silver (detailed video-level) and Gold (aggregated analytics) datasets into Snowflake for centralized analytics.
+- Created dedicated Snowflake tables for yt_silver_videos, yt_daily_summary, yt_top_channels_weekly, and yt_top_videos_daily.
+- Used PUT + COPY INTO workflow to stage Parquet files and load into Snowflake tables.

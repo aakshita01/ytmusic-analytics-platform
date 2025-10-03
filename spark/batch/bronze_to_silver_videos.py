@@ -54,8 +54,9 @@ def main(process_date: str):
                 .withColumn("comment_rate", col("comment_count") / col("views")) \
                 .withColumn("like_dislike_ratio", col("likes") / col("dislikes"))
 
+    spark.conf.set("spark.sql.sources.partitionOverwriteMode", "dynamic")
+    df_enriched.write.mode("overwrite").partitionBy("process_date").parquet(SILVER_DIR)
 
-    df_enriched.write.mode("overwrite").parquet(silver_out)
 
     print(f"Bronze written -> {bronze_out}")
     print(f"silver written -> {silver_out}")
